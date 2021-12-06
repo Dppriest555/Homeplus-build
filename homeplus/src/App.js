@@ -1,11 +1,14 @@
-import './App.css';
+import './styles/App.css';
+import './styles/Calendar.css';
 import Calendar from 'react-calendar';
 
 
 function App() {
   return (
     <div className="App">
-      <Calendar />
+        <div className="container">
+          <Calendar/>
+        </div>
     </div>
   );
 }
