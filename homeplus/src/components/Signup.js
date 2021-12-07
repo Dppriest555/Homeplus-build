@@ -64,6 +64,7 @@ const Signup = () => {
             />
             <input
               placeholder="Password..."
+              type="password"
               onChange={(event) => {
                 setRegisterPassword(event.target.value);
               }}
@@ -82,6 +83,7 @@ const Signup = () => {
             />
             <input
               placeholder="Password..."
+              type="password"
               onChange={(event) => {
                 setLoginPassword(event.target.value);
               }}
