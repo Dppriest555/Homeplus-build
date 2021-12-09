@@ -12,7 +12,7 @@ const Signup = () => {
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
     
-  
+  // eslint-disable-next-line
     const [user, setUser] = useState({});
   
     onAuthStateChanged(auth, (currentUser) => {
@@ -21,7 +21,7 @@ const Signup = () => {
   
     const register = async () => {
       try {
-        const user = await createUserWithEmailAndPassword(
+         const user = await createUserWithEmailAndPassword(
           auth,
           registerEmail,
           registerPassword
@@ -65,10 +65,6 @@ const Signup = () => {
                 Log in here</Link>
             </span>
           </div>
-    
-          <div>
-
-        </div>
         </div>
       );
     }
