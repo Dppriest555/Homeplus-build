@@ -4,6 +4,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "../firebase";
+import {Link} from 'react-router-dom'
 
 
 const Signup = () => {
@@ -37,8 +38,11 @@ const Signup = () => {
 
     return (
         <div className="App">
-          <div>
-            <h3> Register User </h3>
+          <div className="login-container">
+            <h2>Get Started</h2>
+            <br/>
+            <p>Create profile and continue</p>
+            <br/>
             <input
               placeholder="Email..."
               onChange={(event) => {
@@ -52,8 +56,14 @@ const Signup = () => {
                 setRegisterPassword(event.target.value);
               }}
             />
-    
-            <button onClick={register}> Create User</button>
+            <button className="btn-green" onClick={register}>Register</button>
+            <br/>
+            <span>
+              Already have an account? 
+              <br/>
+              <Link className="paragraph-link" to='/login'>
+                Log in here</Link>
+            </span>
           </div>
     
           <div>

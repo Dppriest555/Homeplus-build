@@ -27,19 +27,33 @@
 .btn{
     width: 80vw;
     height: 50px;
-    border-radius: 10px;
+    border-radius: 20px;
     font-size: 14pt;
     background-color: var(--yellow);
     font-weight: 600;
     text-decoration: none;
     font-family: 'Montserrat', sans-serif;
     color: white;
+    margin-top: 25px;
 }
 
 .btn-green{
     width: 80vw;
     height: 50px;
-    border-radius: 10px;
+    border-radius: 20px;
+    font-size: 14pt;
+    background-color: var(--green);
+    font-weight: 600;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    margin-top: 25px;
+}
+
+.small-btn{
+    width: 150px;
+    height: 50px;
+    border-radius: 20px;
     font-size: 14pt;
     background-color: var(--green);
     font-weight: 600;
@@ -48,16 +62,12 @@
     color: white;
 }
 
-.small-btn{
-    width: 150px;
-    height: 50px;
-    border-radius: 10px;
-    font-size: 14pt;
-    background-color: var(--green);
-    font-weight: 600;
-    text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
-    color: white;
+.log-out{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    line-height: 1.5;
+    
 }
 
 
@@ -103,12 +113,13 @@
     padding-top: 40px;
     padding-bottom: 50px;
     border-radius: 25px;
+    box-shadow: 0px -3px 6px #c3c3c3;
 }
 
 .login-container input{
     width: 80vw;
     height: 50px;
-    margin-top: 15px;
+    margin-top: 25px;
     font-family: 'Montserrat', sans-serif;
     border: none;
     border-radius: 20px;
@@ -124,4 +135,15 @@
     text-align: center;
     font-size: 15pt;
     color: rgb(75, 75, 75);
+}
+.login-container span{
+    text-align: center;
+    font-size: 11pt;
+    color: rgb(75, 75, 75);
+}
+.paragraph-link{
+    font-size: inherit;
+    color: black;
+    text-decoration: none;
+    font-weight: bolder;  
 }

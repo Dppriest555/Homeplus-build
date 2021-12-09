@@ -5,6 +5,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "../firebase";
+import {Link} from 'react-router-dom'
 
 function Login() {
 
@@ -59,16 +60,21 @@ function Login() {
                 setLoginPassword(event.target.value);
                   }}
                   />
-
-                <br/>
-                  
                   <button className="btn" onClick={login}>Log in</button>
+                  <br/>
+                  <span>Don't have an account?
+                    <br/>
+                    <Link className="paragraph-link" to='/signup'>
+                      Register here</Link>
+                  </span>
             </div>
 
+          <div className="log-out">
             <h4> User Logged In: </h4>
-          {user?.email}
-                    
-          <button className="small-btn" onClick={logout}>Sign Out</button>
+            {user?.email}    
+            <button className="small-btn" onClick={logout}>Sign Out</button>
+          </div>
+
         </div>
     )
 }
