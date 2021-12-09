@@ -67,8 +67,9 @@
     flex-direction: column;
     margin: 10px;
     line-height: 1.5;
-    
 }
+
+
 
 
 /* Get Started */
@@ -81,7 +82,7 @@
 }
 
 .get-started h1{
-    padding-bottom: 50px;
+    padding-bottom: 20px;
     padding-top: 50px;
     font-size: 40pt;
     max-width: 90vw;
@@ -92,11 +93,19 @@
 }
 
 .get-started p{
-    padding-bottom:50px;
-    padding-top:50px;
     font-size: 15pt;
     max-width: 90vw;
     color: rgb(75, 75, 75);
+}
+
+.image-home{
+    background-image: url(../img/pplHome.png);
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    width: 350px;
+    height: 370px;
+
 }
 
 /* Login Page */
