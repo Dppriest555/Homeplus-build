@@ -1,14 +1,14 @@
 import React from 'react';
 import './styles/App.css';
 import './styles/Calendar.css';
-import Calendar from 'react-calendar';
+import Signup from './components/Signup';
 
 
 function App() {
   return (
     <div className="App">
         <div className="container">
-          <Calendar/>
+          <Signup />
         </div>
     </div>
   );
