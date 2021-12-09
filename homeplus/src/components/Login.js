@@ -41,29 +41,34 @@ function Login() {
 
     return (
         <div>
-            <div>
-                <h3> Login </h3>
-                <input
-                placeholder="Email..."
-                onChange={(event) => {
-                    setLoginEmail(event.target.value);
-                }}
-                />
+           <div className="login-container">
+                  <h2>Welcome back. <br/> You have been missed!</h2>
+                  <br/> 
+                  <p>Let's sign you in.</p>
+                  <br/> 
+                  <input
+                  placeholder="Email..."
+                  onChange={(event) => {
+                      setLoginEmail(event.target.value);
+                  }}
+                  />
                 <input
                 placeholder="Password..."
                 type="password"
                 onChange={(event) => {
-                    setLoginPassword(event.target.value);
-                }}
-                />
-        
-                <button onClick={login}> Login</button>
+                setLoginPassword(event.target.value);
+                  }}
+                  />
+
+                <br/>
+                  
+                  <button className="btn" onClick={login}>Log in</button>
             </div>
 
             <h4> User Logged In: </h4>
           {user?.email}
-    
-          <button onClick={logout}> Sign Out </button>
+                    
+          <button className="small-btn" onClick={logout}>Sign Out</button>
         </div>
     )
 }
