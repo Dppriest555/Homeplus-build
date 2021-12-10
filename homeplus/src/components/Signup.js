@@ -1,20 +1,18 @@
 import { useState } from "react";
 import {
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
   onAuthStateChanged,
-  signOut,
 } from "firebase/auth";
 import { auth } from "../firebase";
+import {Link} from 'react-router-dom'
 
 
 const Signup = () => {
 
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
-    const [loginEmail, setLoginEmail] = useState("");
-    const [loginPassword, setLoginPassword] = useState("");
-  
+    
+  // eslint-disable-next-line
     const [user, setUser] = useState({});
   
     onAuthStateChanged(auth, (currentUser) => {
@@ -23,7 +21,7 @@ const Signup = () => {
   
     const register = async () => {
       try {
-        const user = await createUserWithEmailAndPassword(
+         const user = await createUserWithEmailAndPassword(
           auth,
           registerEmail,
           registerPassword
@@ -34,28 +32,17 @@ const Signup = () => {
       }
     };
   
-    const login = async () => {
-      try {
-        const user = await signInWithEmailAndPassword(
-          auth,
-          loginEmail,
-          loginPassword
-        );
-        console.log(user);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-  
-    const logout = async () => {
-      await signOut(auth);
-    };
+
+
 
 
     return (
         <div className="App">
-          <div>
-            <h3> Register User </h3>
+          <div className="login-container">
+            <h2>Get Started</h2>
+            <br/>
+            <p>Create profile and continue</p>
+            <br/>
             <input
               placeholder="Email..."
               onChange={(event) => {
@@ -69,33 +56,15 @@ const Signup = () => {
                 setRegisterPassword(event.target.value);
               }}
             />
-    
-            <button onClick={register}> Create User</button>
+            <button className="btn-green" onClick={register}>Register</button>
+            <br/>
+            <span>
+              Already have an account? 
+              <br/>
+              <Link className="paragraph-link" to='/login'>
+                Log in here</Link>
+            </span>
           </div>
-    
-          <div>
-            <h3> Login </h3>
-            <input
-              placeholder="Email..."
-              onChange={(event) => {
-                setLoginEmail(event.target.value);
-              }}
-            />
-            <input
-              placeholder="Password..."
-              type="password"
-              onChange={(event) => {
-                setLoginPassword(event.target.value);
-              }}
-            />
-    
-            <button onClick={login}> Login</button>
-          </div>
-    
-          <h4> User Logged In: </h4>
-          {user?.email}
-    
-          <button onClick={logout}> Sign Out </button>
         </div>
       );
     }
