@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import CalendarComponent from './components/Calendar'
 import Home from './components/Home'
+import Profile from './components/Profile';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 
@@ -30,6 +31,12 @@ function App() {
             <Route exact path="/calendar">
               < CalendarComponent />
             </Route>
+
+            <Route exact path="/profile">
+              < Profile />
+            </Route>
+            
+
             
           </Switch>
         </div>

@@ -11,8 +11,6 @@ function Login() {
 
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
-
-
     const [user, setUser] = useState({});
 
 
@@ -29,7 +27,8 @@ function Login() {
             loginPassword
           );
           console.log(user);
-        } catch (error) {
+        }
+        catch (error) {
           console.log(error.message);
         }
       };
