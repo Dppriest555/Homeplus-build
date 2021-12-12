@@ -9,6 +9,8 @@ import {Link} from 'react-router-dom'
 
 const Signup = () => {
 
+
+    const displayName = "";
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
     
@@ -24,7 +26,8 @@ const Signup = () => {
          const user = await createUserWithEmailAndPassword(
           auth,
           registerEmail,
-          registerPassword
+          registerPassword,
+          displayName,
         );
         console.log(user);
       } catch (error) {

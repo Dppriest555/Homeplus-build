@@ -1,84 +1,54 @@
-import { getAuth, onAuthStateChanged, updateProfile } from "firebase/auth";
-import { useState } from 'react'
+import {
+  updateProfile,
+  onAuthStateChanged,
+} from "firebase/auth";
+import { useState } from "react";
+import { auth } from "../firebase";
 
 
+const Profile = () => {
+const [userName, setUserName] = useState("")
 
 
-
-function Profile() {
-
-
-
-
-
-const auth = getAuth();
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-
-    
-
-
-
-
-
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
-
-    // ...
-  } else {
-    // User is signed out
-    // ...
-  }
+const [user, setUser] = useState({}); 
+onAuthStateChanged(auth, (currentUser) => {
+  setUser(currentUser);
 });
-const [displayName, setName] = useState("");
-
 
 
 const update = async () => {
-    try {
-      const user = await updateProfile(
-        auth,
-        displayName,
-      );
-      console.log(user.displayName);
-    }
-    catch (error) {
-      console.log(error.message);
-    }
-  };
+  try {
+     const user = await updateProfile(
+      auth,
+      userName,
       
+    );
+    console.log(user);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
-
-
-
-
-
-
-
-    return (
-        <div>            
+  return (
+    <div>
+      <div>            
             <h2>
             <input
-                placeholder="Name..."
-                type="text"
-                onChange={(event) => {
-                setName(event.target.value);
-                  }}
-                />
-
-    <button className="btn" onClick={update}>Log in</button>
-
-
-                {user.uid}
-                <br/>
-                {user.email}
-                <br/>
-                {user.displayName}
-                <br/>
-                {user.photoURL}
+              placeholder="Name..."
+              onChange={(event) => {
+                setUserName(event.target.value);
+              }}
+            />
+    <br />
+    <button className="btn" onClick={update}>Update</button>
+    <br />
+    {user.email}
+    <br />
+    {user.userName}
             </h2>
         </div>
-    )
+    </div>
+  )
 }
 
 export default Profile
