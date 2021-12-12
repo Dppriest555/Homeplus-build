@@ -1,6 +1,6 @@
 import {
   updateProfile,
-  onAuthStateChanged,
+  onAuthStateChanged
 } from "firebase/auth";
 import { useState } from "react";
 import { auth } from "../firebase";
@@ -8,26 +8,22 @@ import { auth } from "../firebase";
 
 const Profile = () => {
 const [userName, setUserName] = useState("")
-
-
-const [user, setUser] = useState({}); 
+const [user, setUser] = useState({});
+  
 onAuthStateChanged(auth, (currentUser) => {
   setUser(currentUser);
 });
 
-
-const update = async () => {
-  try {
-     const user = await updateProfile(
-      auth,
-      userName,
-      
-    );
-    console.log(user);
-  } catch (error) {
-    console.log(error.message);
-  }
-};
+const update = () => {
+  updateProfile(auth.currentUser, {
+    displayName:userName, photoURL: "https://example.com/jane-q-user/profile.jpg"
+  }).then(() => {
+    console.log(user.displayName)
+    console.log("Profile updated !")
+  }).catch((error) => {
+    alert('an error occured')
+  });
+}
 
   return (
     <div>
@@ -42,9 +38,10 @@ const update = async () => {
     <br />
     <button className="btn" onClick={update}>Update</button>
     <br />
-    {user.email}
+    {user.displayName}
     <br />
-    {user.userName}
+    {user.email}
+    
             </h2>
         </div>
     </div>
