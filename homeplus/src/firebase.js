@@ -3,6 +3,7 @@ import { getAuth } from "firebase/auth";
 
 
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyBKowHN2MNsniZ11qs0SbT8JPl5dJ0_n3Y",
   authDomain: "homeplus-5c895.firebaseapp.com",
