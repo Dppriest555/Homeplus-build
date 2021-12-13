@@ -41,25 +41,28 @@ const Signup = () => {
 
     return (
         <div className="App">
-          <div className="login-container">
+          <div className="login-container container">
             <h2>Get Started</h2>
             <br/>
             <p>Create profile and continue</p>
             <br/>
             <input
+              className="text-input"
               placeholder="Email..."
               onChange={(event) => {
                 setRegisterEmail(event.target.value);
               }}
             />
+
             <input
+              className="text-input"
               placeholder="Password..."
               type="password"
               onChange={(event) => {
                 setRegisterPassword(event.target.value);
               }}
             />
-            <button className="btn-green" onClick={register}>Register</button>
+            <button className="btn btn-green" onClick={register}>Register</button>
             <br/>
             <span>
               Already have an account? 

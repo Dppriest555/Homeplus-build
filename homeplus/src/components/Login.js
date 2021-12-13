@@ -7,6 +7,10 @@ import {
 import { auth } from "../firebase";
 import {Link} from 'react-router-dom'
 
+
+
+
+
 function Login() {
 
     const [loginEmail, setLoginEmail] = useState("");
@@ -41,12 +45,13 @@ function Login() {
 
     return (
         <div>
-            <div className="login-container">
+            <div className="login-container container">
               <h2>Welcome back. <br/> You have been missed!</h2>
                 <br/> 
               <p>Let's sign you in.</p>
                 <br/> 
               <input
+                  className="text-input"
                   placeholder="Email..."
                   onChange={(event) => {
                       setLoginEmail(event.target.value);
@@ -54,6 +59,7 @@ function Login() {
                 />
 
               <input
+                className="text-input"
                 placeholder="Password..."
                 type="password"
                 onChange={(event) => {
@@ -74,9 +80,8 @@ function Login() {
           <div className="log-out">
             <h4> User Logged In: </h4>
             {user?.email}    
-            <button className="small-btn" onClick={logout}>Sign Out</button>
+            <button className="btn" onClick={logout}>Sign Out</button>
           </div>
-
         </div>
     )
 }

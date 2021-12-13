@@ -1,6 +1,11 @@
 import React from 'react';
-import './styles/App.css';
-import './styles/Calendar.css';
+// Styles
+import './styles/App.css'
+import './styles/desktop-styles'
+import './styles/tablet-styles'
+import './styles/Calendar.css'
+import './styles/avatar-grid.css'
+//
 import Login from './components/Login';
 import Signup from './components/Signup';
 import CalendarComponent from './components/Calendar'
