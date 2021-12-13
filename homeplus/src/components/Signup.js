@@ -9,8 +9,6 @@ import {Link} from 'react-router-dom'
 
 const Signup = () => {
 
-
-    const displayName = "";
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
     
@@ -27,7 +25,6 @@ const Signup = () => {
           auth,
           registerEmail,
           registerPassword,
-          displayName,
         );
         console.log(user);
       } catch (error) {
