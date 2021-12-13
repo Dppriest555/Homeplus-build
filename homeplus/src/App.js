@@ -1,8 +1,8 @@
 import React from 'react';
 // Styles
 import './styles/App.css'
-import './styles/desktop-styles'
-import './styles/tablet-styles'
+import './styles/desktop-styles.css'
+import './styles/tablet-styles.css'
 import './styles/Calendar.css'
 import './styles/avatar-grid.css'
 //
