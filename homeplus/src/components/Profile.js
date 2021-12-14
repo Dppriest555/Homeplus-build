@@ -9,7 +9,6 @@ import { auth } from "../firebase";
 
 const Profile = () => {
 const [userName, setUserName] = useState("")
-const [userPic, setUserPic] = useState("")
 const [user, setUser] = useState({});
   
 onAuthStateChanged(auth, (currentUser) => {
