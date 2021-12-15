@@ -16,6 +16,8 @@ onAuthStateChanged(auth, (currentUser) => {
   setUser(currentUser);
 });
 
+
+
 const update = () => {
   updateProfile(auth.currentUser, {
     displayName: userName, 
@@ -42,7 +44,7 @@ const update = () => {
                   className="profile-text-input"
                   placeholder={user.displayName}
                   onChange={(event)  => { 
-                    setUserName(event.target.value,{ required: true });
+                    setUserName(event.target.value);
                   }}
                 />
 
