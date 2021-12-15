@@ -1,4 +1,4 @@
-import { collection, getDocs, addDoc } from "firebase/firestore"; 
+import { collection, getDocs, addDoc, deleteDoc, doc } from "firebase/firestore"; 
 import { useEffect, useState } from "react";
 import { db } from '../firebase'
 
@@ -15,10 +15,15 @@ const Tasks = () => {
       const data = await getDocs(tasksCollectionRef);
       setTask(data.docs.map((doc) => ({...doc.data(), id: doc.id })))
     }
-
     getTasks()
   }, []);
 
+
+  const deleteTask = async(id) =>{
+    const taskDoc = doc(db, "tasksDB", id)
+    await deleteDoc(taskDoc)
+    console.log("Task deleted"+{taskDoc, id})
+  }
 
 
     const addTask = () => {
@@ -40,6 +45,22 @@ const Tasks = () => {
 return (
         <div>
            <div className="container">
+
+            {tasks.map((task) => {
+             return <div className="task-card">
+             <div className="task-card-img">{task.who}</div>
+             <div className="task-card-name container"><h3>{task.task}</h3><p>{task.date}</p></div>
+             <div className="task-card-done">
+                <button
+                  onClick={() => {
+                    deleteTask(task.id)
+                  }} >Done
+                </button>
+               </div>
+           </div>
+           })}
+
+
            <input
               className="text-input"
               placeholder="Name of task"
@@ -66,13 +87,7 @@ return (
           <button className="btn" onClick={addTask}>Add task</button>
            </div>
 
-           {tasks.map((task) => {
-             return <div> 
-               <h1>Task: {task.task}</h1> 
-               <h1>Who: {task.who}</h1> 
-               <h1>Date: {task.date}</h1> 
-               </div>;
-           })}
+
         </div>
     )
 }
