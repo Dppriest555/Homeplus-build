@@ -13,6 +13,7 @@ import Home from './components/Home'
 import Profile from './components/Profile';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Tasks from './components/Tasks';
+import Groups from './components/Groups';
 
 
 function App() {
@@ -44,6 +45,9 @@ function App() {
 
             <Route exact path="/tasks">
               < Tasks />
+            </Route>
+            <Route exact path="/groups">
+              < Groups />
             </Route>
             
 

@@ -28,7 +28,7 @@ const Tasks = () => {
 
     const addTask = () => {
     try {
-      const send = addDoc(collection(db, "tasksDB"), {
+      const send = addDoc(collection(db, "tasksDB",), {
         task: taskName,
         date: taskDate,
         who: taskPerson
