@@ -1,35 +1,42 @@
-import { useState, useEffect } from "react";
-import { collection, addDoc,getDoc } from "firebase/firestore"; 
-import { db } from '../firebase'
-import { async } from "@firebase/util";
+import { useState } from "react";
+import { collection, addDoc } from "firebase/firestore"; 
+import { db , auth } from '../firebase'
+
+
 
 const Groups = () => {
     
-    const [groupName, setGroupName] = useState(""); 
+    const [groupName, setGroupName] = useState("");
 
-    const createGroup = async () => {
+    const createGroup = () => {
         try {
-            const send = addDoc(collection(db, "Groups",), {})
+          // eslint-disable-next-line
+            const send = addDoc(collection(db, "Groups",`${groupName}`,`${groupName}`), {
+              groupName: groupName,
+              members: auth.currentUser.displayName,
+            }).then( 
+              console.log("done")
+              )
             
-            console.log("Added", send.id, "to database");
+            console.log("Added group to the database");
           } catch (e) {
             console.error("Error adding document: ", e);
           }
-          const ref = getDoc
     }
 
-    useEffect(() => {
-        const getGroups = async () => {
-          const data = await getDoc(collection(db, "Groups"));
-          setTask(data.doc.map((doc) => ({...doc.data(), id: doc.id })))
-        }
-        getGroups()
-      }, []);
+//    const getGroups = () => {
+//      const data = getDoc(collection(db, "Groups"));
+//      addDoc(data.doc.map((doc) => ({...doc.data(), id: doc.id })))
+//    }
+//  getGroups()
+
+
+
 
       
 
     return (
-        <div className="co">
+        <div className="container">
             <input
                   className="text-input"
                   placeholder="Group Name "
