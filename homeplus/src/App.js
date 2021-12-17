@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // Styles
 import './styles/App.css'
 import './styles/desktop-styles.css'
@@ -11,8 +12,8 @@ import Signup from './components/Signup';
 import CalendarComponent from './components/Calendar'
 import Home from './components/Home'
 import Profile from './components/Profile';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Tasks from './components/Tasks';
+import AddTasks from './components/AddTasks';
+import Task from './components/Task';
 import Groups from './components/Groups';
 
 
@@ -43,13 +44,17 @@ function App() {
               < Profile />
             </Route>
 
-            <Route exact path="/tasks">
-              < Tasks />
+            <Route exact path="/addtasks">
+              < AddTasks />
             </Route>
+
+            <Route exact path="/task">
+              < Task />
+            </Route>
+
             <Route exact path="/groups">
               < Groups />
             </Route>
-            
 
             
           </Switch>

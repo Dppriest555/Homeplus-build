@@ -17,6 +17,7 @@
     padding: 0;
     font-family: 'Lato', sans-serif;
     border: none;
+    text-decoration: none;
   }
 
 
@@ -43,6 +44,30 @@
 }
 .btn-green:hover{opacity: 90%;}
 .btn-green:active{opacity: 70%;}
+
+.btn-add{
+    width: 40px;
+    height: 40px;
+    background-color: var(--green);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    font-size: 40px;
+    border-radius: 45px;
+    
+}
+
+.add-container{
+    width: 90vw;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    text-decoration: none;
+}
+
+
 
 .container{
     display: flex;
