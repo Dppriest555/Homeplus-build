@@ -23,6 +23,7 @@ function Task() {
   const deleteTask = async(id) =>{
     const taskDoc = doc(db, "tasksDB", id)
     await deleteDoc(taskDoc)
+    setTask(tasks.filter((task) => task.id !== id))
     console.log("Task deleted"+{taskDoc, id})
   }
       
