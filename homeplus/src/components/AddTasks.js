@@ -1,5 +1,5 @@
 import Calendar from 'react-calendar'
-import { collection , addDoc, where, getDocs, query, doc, } from "firebase/firestore"; 
+import { collection , addDoc, where, getDocs, query, } from "firebase/firestore"; 
 import { useState,} from "react";
 import { db  } from '../firebase'
 import {Link} from 'react-router-dom'
@@ -7,6 +7,7 @@ import { auth } from "../firebase";
 import {
   onAuthStateChanged
 } from "firebase/auth";
+
 
 
 
@@ -27,12 +28,22 @@ const AddTasks = () => {
  
   
     const addTask = async () => {
+      const payload = {
+        taskName: taskName,
+        taskDate: taskDate,
+        taskPerson: taskPerson,
+      }
       const collectionRef = collection(db, "Groups");
-      const q = query(collectionRef, where("users", "==", user))
+      const q = query(collectionRef, where("users", 'array-contains-any', [user]))
       const snapshot = await getDocs(q);
 
-      const results = snapshot.docs.map((doc) => ({ ...doc.data(), id:doc.id}));
-      console.log(results);
+      const results = snapshot.docs.map((doc) => ({ ...doc.data(), id:doc.id,}));
+      
+      results.forEach(async (result) => {
+        const collectionRef = collection(db, "Groups", result.id, result.id);
+        await addDoc(collectionRef, payload)
+        console.log(result.id)
+      })
     }
 
 return (

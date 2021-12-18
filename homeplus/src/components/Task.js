@@ -3,17 +3,27 @@ import {doc , collection , deleteDoc , getDocs } from 'firebase/firestore'
 import { db } from '../firebase'
 import Calendar from 'react-calendar'
 import {Link} from 'react-router-dom'
+import { auth } from "../firebase";
+import {
+  onAuthStateChanged
+} from "firebase/auth";
 
 
 
 
 function Task() {
     const [tasks, setTask] = useState([]);
+    const [user, setUser] = useState({});
+
+
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser.uid);
+    });
 
 
     useEffect(() => {
         const getTasks = async () => {
-          const data = await getDocs(collection(db, "Groups"));
+          const data = await getDocs(collection(db, "tasksDB"));
           setTask(data.docs.map((doc) => ({...doc.data(), id: doc.id })))
         }
         getTasks()
