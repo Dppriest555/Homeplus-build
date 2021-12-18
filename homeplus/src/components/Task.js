@@ -13,7 +13,7 @@ function Task() {
 
     useEffect(() => {
         const getTasks = async () => {
-          const data = await getDocs(collection(db, "tasksDB"));
+          const data = await getDocs(collection(db, "Groups"));
           setTask(data.docs.map((doc) => ({...doc.data(), id: doc.id })))
         }
         getTasks()

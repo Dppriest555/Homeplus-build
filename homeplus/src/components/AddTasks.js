@@ -1,8 +1,13 @@
 import Calendar from 'react-calendar'
-import { collection , addDoc } from "firebase/firestore"; 
-import { useState } from "react";
+import { collection , addDoc, where, getDocs, query, doc, } from "firebase/firestore"; 
+import { useState,} from "react";
 import { db  } from '../firebase'
 import {Link} from 'react-router-dom'
+import { auth } from "../firebase";
+import {
+  onAuthStateChanged
+} from "firebase/auth";
+
 
 
 
@@ -12,22 +17,23 @@ const AddTasks = () => {
   const [taskName, setTaskName] = useState("");
   const [taskDate, setTaskDate] = useState("");
   const [taskPerson, setTaskPerson] = useState("");
+  const [user, setUser] = useState({});
+
+
+  onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser.uid);
+  });
+  
  
   
-    const addTask = () => {
-    try {
-      const send = addDoc(collection(db, "tasksDB",), {
-        task: taskName,
-        date: taskDate,
-        who: taskPerson
-      });
-      
-      console.log("Added", send.task, "to database");
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
-}
+    const addTask = async () => {
+      const collectionRef = collection(db, "Groups");
+      const q = query(collectionRef, where("users", "==", user))
+      const snapshot = await getDocs(q);
 
+      const results = snapshot.docs.map((doc) => ({ ...doc.data(), id:doc.id}));
+      console.log(results);
+    }
 
 return (
         <div>

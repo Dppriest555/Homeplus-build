@@ -1,27 +1,48 @@
-import { useState } from "react";
-import { collection, addDoc } from "firebase/firestore"; 
-import { db , auth } from '../firebase'
-
+import { useState, useEffect, React } from "react";
+import { collection, addDoc, getDocs, updateDoc, doc, arrayUnion } from "firebase/firestore"; 
+import { db  } from '../firebase'
+import { auth } from "../firebase";
+import {
+  onAuthStateChanged
+} from "firebase/auth";
 
 
 const Groups = () => {
     
     const [groupName, setGroupName] = useState("");
+    const [groups, setGroups] = useState([]);
+    const [user, setUser] = useState({});
 
-    const createGroup = () => {
-        try {
-          // eslint-disable-next-line
-            const send = addDoc(collection(db, "Groups",`${groupName}`,`${groupName}`), {
-              groupName: groupName,
-              members: auth.currentUser.displayName,
-            }).then( 
-              console.log("done")
-              )
-            
-            console.log("Added group to the database");
-          } catch (e) {
-            console.error("Error adding document: ", e);
-          }
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser.uid);
+    });
+    
+
+
+
+    useEffect(() => {
+      const getGroups = async () => {
+        const data = await getDocs(collection(db, "Groups"));
+        setGroups(data.docs.map((doc) => ({...doc.data(), id: doc.id })))
+      }
+      getGroups()
+    }, []);
+
+
+
+    const createGroup = async () => {
+
+            const collectionRef = collection(db, "Groups");
+            const payload = { groupName: groupName, users:[user]};
+            const docRef = await addDoc(collectionRef, payload);
+            console.log("Document id is:" + docRef.id)
+    }
+
+    const joinGroup = async (id) => {
+      const docRef = doc(db, "Groups", id ) ;
+      const payload = {users: arrayUnion(user)};
+      updateDoc(docRef, payload,)
+      console.log(id,groupName)
     }
 
 //    const getGroups = () => {
@@ -43,8 +64,19 @@ const Groups = () => {
                   onChange={(event) => {
                       setGroupName(event.target.value);
                   }}
+
                 />
                 <button onClick={createGroup} className="btn btn-green">Create Group</button>
+
+                {groups.map((group) => {
+             return <div key={group.id}
+             className="task-card">
+               <button onClick={() => joinGroup(group.id)}>{group.groupName}</button>
+            
+          
+
+           </div>
+           })}              
         </div>
     )
 }
