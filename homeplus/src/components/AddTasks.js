@@ -52,14 +52,14 @@ return (
         < Calendar/>
 
            <input
-              className="text-input"
+              className="text-input-grey"
               placeholder="Name of task"
               onChange={(event) => {
                 setTaskName(event.target.value);
               }}
             />
             <input
-              className="text-input"
+              className="text-input-grey"
               placeholder="When?"
               type="date"
               onChange={(event) => {
@@ -67,7 +67,7 @@ return (
               }}
             />
             <input
-              className="text-input"
+              className="text-input-grey"
               placeholder="Who?"
               onChange={(event) => {
                 setTaskPerson(event.target.value);

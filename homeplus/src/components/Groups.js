@@ -58,23 +58,25 @@ const Groups = () => {
 
     return (
         <div className="container">
+          <div className="container">
+          <h3 className="group-heading">Create group:</h3>
             <input
-                  className="text-input"
-                  placeholder="Group Name "
-                  onChange={(event) => {
-                      setGroupName(event.target.value);
-                  }}
-
+                    className="text-input-grey"
+                    placeholder="Group Name "
+                    onChange={(event) => {
+                        setGroupName(event.target.value);
+                    }}
                 />
-                <button onClick={createGroup} className="btn btn-green">Create Group</button>
+              <button onClick={createGroup} className="btn btn-green">Create Group</button>
+          </div>
+                <br/>
+                <br/>
 
+
+                  <h3 className="group-heading">Join existing group:</h3>
                 {groups.map((group) => {
-             return <div key={group.id}
-             className="task-card">
-               <button onClick={() => joinGroup(group.id)}>{group.groupName}</button>
-            
-          
-
+             return <div key={group.id}>
+               <button className="btn" onClick={() => joinGroup(group.id)}> <h3>{group.groupName}</h3> </button>
            </div>
            })}              
         </div>

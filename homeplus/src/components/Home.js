@@ -9,7 +9,7 @@ function Home() {
 
             <div className='container'>
                 <div className='image-home'></div>
-                    <div className='button-container'>
+                    <div className='container'>
                     <Link to='/login' ><button className='btn'>Log in</button></Link>
                     <Link to='/signup' ><button className='btn btn-green'>Sign up</button></Link>
                     </div>

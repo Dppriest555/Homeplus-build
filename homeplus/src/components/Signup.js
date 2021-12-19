@@ -37,7 +37,7 @@ const Signup = () => {
 
 
     return (
-        <div className="App">
+        <div className="container">
           <div className="login-container container">
             <h2>Get Started</h2>
             <br/>
