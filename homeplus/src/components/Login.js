@@ -5,7 +5,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "../firebase";
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 
 
 
@@ -16,6 +16,7 @@ function Login() {
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
     const [user, setUser] = useState({});
+    const history = useHistory()
 
 
     onAuthStateChanged(auth, (currentUser) => {
@@ -30,6 +31,7 @@ function Login() {
             loginEmail,
             loginPassword
           );
+          history.push('/task')
           console.log(user);
         }
         catch (error) {
