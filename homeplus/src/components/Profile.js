@@ -6,6 +6,8 @@ import {
 import { useState } from "react";
 import { auth } from "../firebase";
 import {useHistory} from 'react-router-dom'
+import {Link} from 'react-router-dom'
+
 
 
 
@@ -178,6 +180,10 @@ const logout = async () => {
 
       </div>
             <button className="btn" onClick={update}>Update</button>
+            <Link to="/task"><button className='btn'>See Tasks</button></Link>
+            <Link to="/groups"><button className='btn'>Join Group</button></Link>
+            
+
         </div>
     </div>
   )
