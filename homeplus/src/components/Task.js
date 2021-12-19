@@ -1,5 +1,5 @@
 import {useEffect , useState} from 'react'
-import {doc , collection , deleteDoc , getDocs } from 'firebase/firestore'
+import {doc , collection , deleteDoc , getDocs,query, where } from 'firebase/firestore'
 import { db } from '../firebase'
 import Calendar from 'react-calendar'
 import {Link} from 'react-router-dom'
@@ -21,13 +21,32 @@ function Task() {
     });
 
 
+
+    
+
     useEffect(() => {
+
         const getTasks = async () => {
-          const data = await getDocs(collection(db, "tasksDB"));
-          setTask(data.docs.map((doc) => ({...doc.data(), id: doc.id })))
+           
+          const collectionRef = collection(db, "Groups");
+          const q = query(collectionRef, where("users", 'array-contains-any', [user]))
+          const snapshot = await getDocs(q);
+    
+          const results = snapshot.docs.map((doc) => ({ ...doc.data(), id:doc.id,}));
+          
+          results.forEach(async (result) => {
+            const collectionRef = collection(db, "Groups", result.id, result.id);
+            const data = await getDocs(collectionRef)
+            setTask(data.docs.map((doc) => ({...doc.data(), id: doc.id })))
+            console.log(result.id)
+          })
+          
         }
         getTasks()
-      }, []);
+      }, [user]);
+
+    
+ 
 
 
   const deleteTask = async(id) =>{
@@ -47,8 +66,8 @@ function Task() {
              onClick={() => {
                deleteTask(task.id)
              }} className="task-card">
-             <div className="task-card-img">{task.who}</div>
-             <div className="task-card-name container"><h3>{task.task}</h3><p>{task.date}</p></div>
+             <div className="task-card-img">{task.taskPerson}</div>
+             <div className="task-card-name container"><h3>{task.taskName}</h3><p>{task.taskDate}</p></div>
              <div className="task-card-done"></div>
            </div>
            })}
