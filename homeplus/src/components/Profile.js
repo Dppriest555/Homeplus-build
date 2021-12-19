@@ -1,9 +1,11 @@
 import {
   updateProfile,
-  onAuthStateChanged
+  onAuthStateChanged,
+  signOut
 } from "firebase/auth";
 import { useState } from "react";
 import { auth } from "../firebase";
+import {useHistory} from 'react-router-dom'
 
 
 
@@ -11,6 +13,7 @@ const Profile = () => {
 const [userName, setUserName] = useState("")
 const [userAvatar, setUserAvatar] = useState("")
 const [user, setUser] = useState({});
+const history = useHistory()
   
 onAuthStateChanged(auth, (currentUser) => {
   setUser(currentUser);
@@ -31,9 +34,20 @@ const update = () => {
   });
 }
 
+const logout = async () => {
+  await signOut(auth);
+  history.push('/login')
+};
+
+
   return (
     <div>
       <div className="container">    
+      <div className="log-out">
+            <h4> User Logged In: </h4>
+            {user?.email}    
+            <button className="btn" onClick={logout}>Sign Out</button>
+          </div>
 
           <img className="profile-avatar" src={user.photoURL} alt="Current Profile"/>    
           <br/>  

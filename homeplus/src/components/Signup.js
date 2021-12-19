@@ -4,13 +4,15 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "../firebase";
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
+
 
 
 const Signup = () => {
 
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
+    const history = useHistory()
     
   // eslint-disable-next-line
     const [user, setUser] = useState({});
@@ -26,6 +28,7 @@ const Signup = () => {
           registerEmail,
           registerPassword,
         );
+        history.push('/task')
         console.log(user);
       } catch (error) {
         console.log(error.message);

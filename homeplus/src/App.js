@@ -17,6 +17,8 @@ import Profile from './components/Profile';
 import AddTasks from './components/AddTasks';
 import Task from './components/Task';
 import Groups from './components/Groups';
+import PrivateRoute from "./components/PrivateRoute";
+import { AuthProvider } from "./Context/AuthContext";
 
 
 
@@ -39,6 +41,7 @@ function App() {
 
   return (
     <Router >
+      <AuthProvider>
     <div className="App">
         <div className="container">
           <Switch>
@@ -55,25 +58,25 @@ function App() {
               <Login />
             </Route>
 
-            <Route exact path="/calendar">
+            <PrivateRoute exact path="/calendar">
               < CalendarComponent />
-            </Route>
+            </PrivateRoute>
 
-            <Route exact path="/profile">
+            <PrivateRoute exact path="/profile">
               < Profile />
-            </Route>
+            </PrivateRoute>
 
-            <Route exact path="/addtasks">
+            <PrivateRoute exact path="/addtasks">
               < AddTasks userGroup={userGroup}/>
-            </Route>
+            </PrivateRoute>
 
-            <Route exact path="/task">
+            <PrivateRoute exact path="/task">
               < Task />
-            </Route>
+            </PrivateRoute>
 
-            <Route exact path="/groups">
+            <PrivateRoute exact path="/groups">
               < Groups />
-            </Route>
+            </PrivateRoute>
             <Route exact path="/groups">
             {groups.map((group) => {
              return <div key={group.id}
@@ -95,6 +98,7 @@ function App() {
           </Switch>
         </div>
     </div>
+    </AuthProvider>
     </Router >
   );
 }

@@ -2,7 +2,6 @@ import { useState } from "react";
 import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
-  signOut,
 } from "firebase/auth";
 import { auth } from "../firebase";
 import {Link, useHistory} from 'react-router-dom'
@@ -19,8 +18,8 @@ function Login() {
     const history = useHistory()
 
 
-    onAuthStateChanged(auth, (currentUser) => {
-        setUser(currentUser);
+    onAuthStateChanged(auth, (user) => {
+        setUser(user);
       });
   
       
@@ -39,10 +38,7 @@ function Login() {
         }
       };
 
-      const logout = async () => {
-        await signOut(auth);
-      };
-
+     
 
 
     return (
@@ -79,11 +75,7 @@ function Login() {
                 </span>
              </div>
 
-          <div className="log-out">
-            <h4> User Logged In: </h4>
-            {user?.email}    
-            <button className="btn" onClick={logout}>Sign Out</button>
-          </div>
+        
         </div>
     )
 }

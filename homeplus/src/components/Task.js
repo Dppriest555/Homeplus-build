@@ -17,7 +17,7 @@ function Task() {
 
 
     onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser.uid);
+      setUser(currentUser);
     });
 
 
@@ -29,7 +29,7 @@ function Task() {
         const getTasks = async () => {
            
           const collectionRef = collection(db, "Groups");
-          const q = query(collectionRef, where("users", 'array-contains-any', [user]))
+          const q = query(collectionRef, where("users", 'array-contains-any', [`${user.uid}`]))
           const snapshot = await getDocs(q);
     
           const results = snapshot.docs.map((doc) => ({ ...doc.data(), id:doc.id,}));
@@ -43,17 +43,26 @@ function Task() {
           
         }
         getTasks()
-      }, [user]);
+      }, [user.uid]);
 
     
  
 
 
   const deleteTask = async(id) =>{
-    const taskDoc = doc(db, "tasksDB", id)
+    const collectionRef = collection(db, "Groups");
+    const q = query(collectionRef, where("users", 'array-contains-any', [user.uid]))
+    const snapshot = await getDocs(q);
+
+    const results = snapshot.docs.map((doc) => ({ ...doc.data(), id:doc.id,}));
+
+    results.forEach(async (result) => {
+      const taskDoc =  doc(db, "Groups", result.id, result.id, id);
+     
     await deleteDoc(taskDoc)
     setTask(tasks.filter((task) => task.id !== id))
-    console.log("Task deleted"+{taskDoc, id})
+    console.log("Task deleted" + taskDoc.id)
+    })
   }
       
     return (

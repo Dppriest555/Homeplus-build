@@ -22,7 +22,7 @@ const AddTasks = () => {
 
 
   onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser.uid);
+    setUser(currentUser);
   });
   
  
@@ -34,7 +34,7 @@ const AddTasks = () => {
         taskPerson: taskPerson,
       }
       const collectionRef = collection(db, "Groups");
-      const q = query(collectionRef, where("users", 'array-contains-any', [user]))
+      const q = query(collectionRef, where("users", 'array-contains-any', [user.uid]))
       const snapshot = await getDocs(q);
 
       const results = snapshot.docs.map((doc) => ({ ...doc.data(), id:doc.id,}));

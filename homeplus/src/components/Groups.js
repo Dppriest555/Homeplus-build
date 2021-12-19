@@ -14,10 +14,9 @@ const Groups = () => {
     const [user, setUser] = useState({});
 
     onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser.uid);
+      setUser(currentUser);
     });
     
-
 
 
     useEffect(() => {
@@ -33,14 +32,14 @@ const Groups = () => {
     const createGroup = async () => {
 
             const collectionRef = collection(db, "Groups");
-            const payload = { groupName: groupName, users:[user]};
+            const payload = { groupName: groupName, users:[user.uid]};
             const docRef = await addDoc(collectionRef, payload);
             console.log("Document id is:" + docRef.id)
     }
 
     const joinGroup = async (id) => {
       const docRef = doc(db, "Groups", id ) ;
-      const payload = {users: arrayUnion(user)};
+      const payload = {users: arrayUnion(user.uid)};
       updateDoc(docRef, payload,)
       console.log(id,groupName)
     }
