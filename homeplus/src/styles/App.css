@@ -97,6 +97,17 @@
     text-align: center;
 }
 
+.log-out h4{
+    font-size: 20px;
+    display: flex;
+    position: center;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: var(--grey);
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
 
 .text-input{
     width: 310px;
