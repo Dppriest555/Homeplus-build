@@ -59,6 +59,11 @@
     
 }
 
+.btn-group{
+    background-color: var(--beige);
+    color: rgb(49, 49, 49);
+}
+
 .add-container{
     width: 90vw;
     display: flex;
@@ -89,6 +94,7 @@
     flex-direction: column;
     margin: 10px;
     line-height: 1.5;
+    text-align: center;
 }
 
 
@@ -223,7 +229,7 @@
     text-align: center;
     font-size: 11pt;
     color: rgb(75, 75, 75);
-}
+}q
 
 .profile-avatar{
     margin-top: 15px;

@@ -80,11 +80,10 @@ function Task() {
              <div className="task-card-done"></div>
            </div>
            })}
-
            <div className="add-container">
                 <Link to="/addtasks"><button className='btn-add'>+</button></Link>
-                <Link to="/profile"><button className='btn'>Profile</button></Link>
            </div>
+           <Link to="/profile"><button className='btn'>Profile</button></Link>
 
         </div>
     )

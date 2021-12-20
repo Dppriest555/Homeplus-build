@@ -5,6 +5,7 @@ import { auth } from "../firebase";
 import {
   onAuthStateChanged
 } from "firebase/auth";
+import { Link } from "react-router-dom";
 
 
 const Groups = () => {
@@ -66,7 +67,7 @@ const Groups = () => {
                         setGroupName(event.target.value);
                     }}
                 />
-              <button onClick={createGroup} className="btn btn-green">Create Group</button>
+              <Link to='/task'><button onClick={createGroup} className="btn btn-green">Create Group</button></Link>
           </div>
                 <br/>
                 <br/>
@@ -75,7 +76,7 @@ const Groups = () => {
                   <h3 className="group-heading">Join existing group:</h3>
                 {groups.map((group) => {
              return <div key={group.id}>
-               <button className="btn" onClick={() => joinGroup(group.id)}> <h3>{group.groupName}</h3> </button>
+               <Link to='/task'>  <button className="btn btn-group" onClick={() => joinGroup(group.id)}> <h3>{group.groupName}</h3> </button></Link>
            </div>
            })}              
         </div>

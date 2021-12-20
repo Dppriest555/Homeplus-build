@@ -45,11 +45,7 @@ const logout = async () => {
   return (
     <div>
       <div className="container">    
-      <div className="log-out">
-            <h4> User Logged In: </h4>
-            {user?.email}    
-            <button className="btn" onClick={logout}>Sign Out</button>
-          </div>
+     
 
           <img className="profile-avatar" src={user.photoURL} alt="Current Profile"/>    
           <br/>  
@@ -57,7 +53,7 @@ const logout = async () => {
 
 
                 <input
-                  className="profile-text-input"
+                  className="text-input-grey"
                   placeholder={user.displayName}
                   onChange={(event)  => { 
                     setUserName(event.target.value);
@@ -180,11 +176,17 @@ const logout = async () => {
 
       </div>
             <button className="btn" onClick={update}>Update</button>
-            <Link to="/task"><button className='btn'>See Tasks</button></Link>
-            <Link to="/groups"><button className='btn'>Join Group</button></Link>
+            <Link to="/task"><button className='btn btn-green'>See Tasks</button></Link>
+            <Link to="/groups"><button className='btn btn-green'>Join Group</button></Link>
             
 
         </div>
+        <br/>
+        <div className="log-out">
+            <h4> User Logged In: </h4>
+            {user?.email}    
+            <button className="btn" onClick={logout}>Sign Out</button>
+          </div>
     </div>
   )
 }

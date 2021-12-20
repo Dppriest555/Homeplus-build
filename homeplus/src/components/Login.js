@@ -30,7 +30,7 @@ function Login() {
             loginEmail,
             loginPassword
           );
-          history.push('/task')
+          history.push('/profile')
           console.log(user);
         }
         catch (error) {
